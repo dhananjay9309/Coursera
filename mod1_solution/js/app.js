@@ -15,22 +15,22 @@ function LunchCheckController ($scope) {
             || $scope.inputtext.length === 0)
         {
             $scope.message =  "Please enter data first";
+            $scope.fontColor = "red";
         }
         else {
             var InputItems = $scope.inputtext.split(",");
             var stripedList = [];
-            console.log(InputItems);
-            console.log(InputItems.length);
+
 
             for(var i=0, j= InputItems.length; i < j; i++)
             {
                 if (InputItems[i].trim() !== "")
                 {
-                    console.log(InputItems[i]);
+                    $scope.fontColor = "green" ;
                     stripedList.push(InputItems[i]);
                 }
             }
-            console.log(stripedList);
+
 
             if (stripedList.length <= 3)
             {
@@ -40,8 +40,13 @@ function LunchCheckController ($scope) {
             {
                 $scope.message = "Too much!";
             }
-        }
+            
 
+            
+
+
+    };
+    
     };
 }
 })();

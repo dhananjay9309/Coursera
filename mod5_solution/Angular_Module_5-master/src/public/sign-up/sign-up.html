@@ -1,0 +1,71 @@
+<div id="signup" ng-controller='RegistrationController as reg'>
+	<form name='userForm' novalidate>
+		<input type="text" name="first_name" placeholder="First Name"
+			ng-model="reg.user.first_name"
+			required
+			minlength="3">
+			{{ reg.user.first_name}}
+		<span
+	        ng-if="(userForm.first_name.$error.minlength || userForm.first_name.$error.required) && userForm.first_name.$touched">
+	        First name must be at least 3 characters long.
+	    </span>
+	    <br>
+	      
+		<input type="text" name="last_name" placeholder="Last Name"
+			ng-model="reg.user.last_name"
+			required
+			minlength="3">
+			{{ reg.user.last_name}}
+		<span
+	        ng-if="(userForm.last_name.$error.minlength || userForm.last_name.$error.required) && userForm.last_name.$touched">
+	        Last name must be at least 3 characters long.
+	    </span>
+	    <br>
+
+		<input type="email" name="email" placeholder="Email"
+			ng-model="reg.user.email" required>
+			{{ reg.user.email}}	
+		<span ng-if="userForm.email.$invalid && userForm.email.$touched">
+	        Must be a valid email address with format: handle@domain 
+	    </span>
+	    <br>
+
+
+		<input type="text" name="phone" placeholder="Phone ###-###-####"
+			ng-model="reg.user.phone" required
+			pattern="(\d{3})-(\d{3})-(\d{4})">
+			{{ reg.user.phone}}
+		<span ng-if="userForm.phone.$invalid && userForm.phone.$touched">
+	        Phone must be in the format ###-###-####.
+	    </span>
+		<br>
+		
+		<input type="text" name="short_name" placeholder=
+			"Fav Dish Short Name" ng-model="reg.user.short_name" required>
+			{{ reg.user.short_name}}
+		<span ng-if="userForm.short_name.$invalid && userForm.short_name.$touched">
+	        Short name is required.
+	    </span>
+		<br>
+
+		<button ng-disabled="userForm.$invalid"
+			ng-click="reg.getUserFavItem(reg.user.short_name)">Submit</button>
+		<br>
+		<span ng-if="reg.emptySN == true">
+	        No such menu number exists.
+	    </span>	
+	    <span ng-if="reg.emptySN == false">
+	        Your info has been saved as:
+	        <ul>
+	        	<li>First Name: {{reg.user.first_name}}</li>
+	        	<li>Last Name: {{reg.user.last_name}}</li>
+	        	<li>Email: {{reg.user.email}}</li>
+	        	<li>Phone: {{reg.user.phone}}</li>
+	        	<li>Favorite Item: {{reg.favorite.name}}: {{reg.favorite.description}}</li>
+	        	<img width="250" height="150" ng-src="https://nlow-web-dev-course5.herokuapp.com/images/{{reg.user.short_name}}.jpg">
+	        </ul>
+	    </span>	
+
+	</form>
+	<br>
+</div>
